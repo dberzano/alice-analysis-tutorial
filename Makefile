@@ -10,15 +10,7 @@ node_modules:
 	gitbook install
 
 clean:
-	@rm -rf _book
-	@rm -rf node_modules
+	@rm -rf _book _publish node_modules
 
 publish: all
-	@ghp-import -n -f -p -r https://${GH_TOKEN}@github.com/$(TRAVIS_REPO_SLUG) _book
-
-publishpr: all
-	test x$(TRAVIS_PULL_REQUEST) = xtrue
-	false
-	@ghp-import -n _book
-	@git checkout gh-pages
-	@
+	@./publish.sh
