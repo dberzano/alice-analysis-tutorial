@@ -10,7 +10,10 @@ install:
 node_js: '4.1'
 script:
   - make
-after_success:
+after_success: |
+  if [ ${TRAVIS_PULL_REQUEST} = false ]; then
+    make publish
+  
   - '[ "${TRAVIS_PULL_REQUEST}" = false ] && make publish'
 env:
   global:

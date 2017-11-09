@@ -15,3 +15,10 @@ clean:
 
 publish: all
 	@ghp-import -n -f -p -r https://${GH_TOKEN}@github.com/$(TRAVIS_REPO_SLUG) _book
+
+publishpr: all
+	test x$(TRAVIS_PULL_REQUEST) = xtrue
+	false
+	@ghp-import -n _book
+	@git checkout gh-pages
+	@
